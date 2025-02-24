@@ -1,49 +1,28 @@
-"use strict"
-// #1. setItem - localStoragega qandaydir malumot qoshish
-// localStorage.setItem('Name:', 'Latf');
+//   regular expression  ( / pattern / ) shu ko'rinishda yoziladi
 
-// // #2. getItem - localStorage dan malumot oladi: 
-// const name1 = localStorage.getItem('Name:')
-// if (name1 === 'Latif') {
-//     document.body.style.backgroundColor = 'green'
-// } else {
-//     document.body.style.backgroundColor = 'red'
-// }
+// const frName = 'MaIirzo sdfdsfds'
+// const regEx = /t/m; // ytoq qiymatni bersak, search() da -1(faslse) qaytaradti/ match()da null qaytaradi
+// i - register flag. tepadagi i harfi kattami kichikmi birinchi topganini qaytaradi
+// g - global flag. barcha ixtiyoriy i harflarni qaytaradi
+// m - bitta qatordan kop bolsas
+// replace ()  - qiymatni biz bergan qiymatga almashtiradi
+// \d - digits degani
+//\w  - words degani
+// \s - space degani
+// \D - not difgits degani
+//  \W - not words degani
 
-// #3. loacalStorage.clear() - loaclStoragedagi barcha malumotlarni o'chirib tashlaydi
-// #4. localStorage.removeItem('Name:') // key boyicha o'chirib tashlaydi
-
-const form = document.querySelector("form"),
-    postParent = document.querySelector(".posts")
-
-form.addEventListener('submit', (event) => {
-    event.preventDefault() // form ni default hodisadan tozalaydi
-    const formData = new FormData(form) // formdagi malumotlarni olish
-    const object = {} // object yaratamiz, chunki formDatadagi malumotlarni objectga o'tkazishimiz kk
-    formData.forEach((value, key) => {
-        object[key] = value // objectga key va valuni qoshamiz
-    })
-
-    const db = JSON.parse(localStorage.getItem("posts")) // JSON parse chuni localStorage string ko'rinishda saqlanishi un
-    if (db) {
-        localStorage.setItem("posts", JSON.stringify([...db, object])) // db ni localStorage JOSN ko'rinishda saqlaymiz
-    } else {
-        localStorage.setItem("posts", JSON.stringify([object])) // agar db bo'lmasa yangi array yaratamiz
-    }
-})
+const friName = "Mirzo1234 "
+const regEx = /\W/ig;
+console.log(friName.match(regEx)); // test() - true yoki false qaytaradi. agar Mirzo dagi yo'q harifni chqairsak false qaytardi
 
 
-getPosts()
+// const pass = "pass...." // pass... - adan kn nuqta ko'rsatmoqchi bolsak, (/\./) bn ishlaymiz(\  - teskari bbelgi)
+// console.log(pass.replace(/\./g, "*")); // .  - barcha belgilar degani
 
-function getPosts() {
-    const posts = JSON.parse(localStorage.getItem("posts")) // localStorage dan malumotlarni olish
-    posts.forEach((item, index) => {
-        const postEl = document.createElement("div")
-        postEl.classList.add("post")
+// const date = '2205:01:24' // 2205-01-24 ko'rinishiga keltirish un
+// console.log(date.replace(/:/g, "-")); // /:/ ni "-" ga almashtir degani 
 
-        postEl.innerHTML = ` <h4> <b>#${index + 1}</b> ${item.title} </h4>
-      <p>${item.body}</p>
-        `
-        postParent.append(postEl)
-    })
-}
+
+// // console.log(frName.search(regEx)); // search() birinchi regEx ni indexini qaytardi
+// console.log(frName.search(regEx)); // regEx dagi umumiy nechta  malumot bolsa hammasini  qaytaradi. match masssive qaytaradi/
